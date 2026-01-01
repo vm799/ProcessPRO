@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Build an AI Website | ProcessPRO Creation Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fafafa;
+      --bg-white: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #666666;
+      --text-muted: #999999;
+      --accent-cyan: #0891b2;
+      --accent-purple: #7c3aed;
+      --accent-green: #059669;
+      --accent-orange: #ea580c;
+      --accent-pink: #db2777;
+      --border: #e5e5e5;
+      --border-dark: #d4d4d4;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+      --shadow-lg: 0 4px 20px rgba(0,0,0,0.1), 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    header h1 span {
+      background: linear-gradient(135deg, #4ae3e3, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      font-size: 1.125rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent-cyan);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 5rem;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: var(--text);
+    }
+
+    h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    .section-intro {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-size: 1.5rem;
+    }
+
+    .card-icon.cyan { background: rgba(8, 145, 178, 0.1); color: var(--accent-cyan); }
+    .card-icon.purple { background: rgba(124, 58, 237, 0.1); color: var(--accent-purple); }
+    .card-icon.green { background: rgba(5, 150, 105, 0.1); color: var(--accent-green); }
+    .card-icon.orange { background: rgba(234, 88, 12, 0.1); color: var(--accent-orange); }
+    .card-icon.pink { background: rgba(219, 39, 119, 0.1); color: var(--accent-pink); }
+
+    .card h4 {
+      margin: 0;
+      font-size: 1.125rem;
+    }
+
+    /* Visual Diagrams */
+    .diagram-container {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+
+    .diagram-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .diagram-title::before {
+      content: '';
+      width: 12px;
+      height: 3px;
+      background: var(--accent-cyan);
+      border-radius: 2px;
+    }
+
+    /* Flow Diagram */
+    .flow-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .flow-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .flow-box {
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-align: center;
+      min-width: 140px;
+      position: relative;
+    }
+
+    .flow-box.idea { background: #fef3c7; color: #92400e; border: 2px solid #fcd34d; }
+    .flow-box.source { background: #dbeafe; color: #1e40af; border: 2px solid #93c5fd; }
+    .flow-box.build { background: #d1fae5; color: #065f46; border: 2px solid #6ee7b7; }
+    .flow-box.result { background: #ede9fe; color: #5b21b6; border: 2px solid #c4b5fd; }
+    .flow-box.deploy { background: #fce7f3; color: #9d174d; border: 2px solid #f9a8d4; }
+
+    .flow-arrow {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.25rem;
+    }
+
+    .flow-arrow.down {
+      transform: rotate(90deg);
+    }
+
+    /* Tree Diagram */
+    .tree-diagram {
+      font-size: 0.875rem;
+    }
+
+    .tree-root {
+      padding: 0.75rem 1.25rem;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .tree-branch {
+      margin-left: 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .tree-item {
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .tree-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 1rem;
+      width: 1rem;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .tree-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+    }
+
+    .tree-label .icon {
+      font-size: 1rem;
+    }
+
+    .tree-label.folder { border-color: #fcd34d; background: #fefce8; }
+    .tree-label.file-html { border-color: #f97316; background: #fff7ed; }
+    .tree-label.file-css { border-color: #3b82f6; background: #eff6ff; }
+    .tree-label.file-js { border-color: #facc15; background: #fefce8; }
+
+    /* Component Grid */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .component-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .component-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .component-preview {
+      height: 140px;
+      background: #0a0a0c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .component-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .component-preview .placeholder {
+      font-size: 3rem;
+      opacity: 0.5;
+    }
+
+    .component-info {
+      padding: 1.25rem;
+    }
+
+    .component-info h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .component-info p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .component-tag {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      background: var(--bg);
+      border-radius: 4px;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Step List */
+    .step-list {
+      counter-reset: step;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-item:last-child {
+      border-bottom: none;
+    }
+
+    .step-number-circle {
+      counter-increment: step;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      background: var(--bg);
+      border: 2px solid var(--accent-cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    .step-number-circle::before {
+      content: counter(step);
+    }
+
+    .step-content h4 {
+      margin: 0 0 0.5rem;
+    }
+
+    .step-content p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Code Block */
+    .code-block {
+      background: #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .code-header {
+      background: #2d2d2d;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .code-dot.red { background: #ff5f56; }
+    .code-dot.yellow { background: #ffbd2e; }
+    .code-dot.green { background: #27ca3f; }
+
+    .code-filename {
+      color: #888;
+      font-size: 0.8125rem;
+      font-family: 'JetBrains Mono', monospace;
+      margin-left: auto;
+    }
+
+    .code-content {
+      padding: 1.25rem;
+      overflow-x: auto;
+    }
+
+    .code-content code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: #d4d4d4;
+    }
+
+    .code-content .comment { color: #6a9955; }
+    .code-content .keyword { color: #569cd6; }
+    .code-content .string { color: #ce9178; }
+    .code-content .tag { color: #4ec9b0; }
+    .code-content .attr { color: #9cdcfe; }
+    .code-content .value { color: #ce9178; }
+
+    /* Glossary */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .glossary-item {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .glossary-term {
+      font-weight: 600;
+      color: var(--accent-purple);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .glossary-def {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Callout */
+    .callout {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .callout.info {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .callout.tip {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .callout.warning {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+    }
+
+    .callout-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .callout-content h5 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .callout-content p {
+      font-size: 0.9375rem;
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    /* Visual Comparison */
+    .comparison-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 700px) {
+      .comparison-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .comparison-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .comparison-header {
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .comparison-header.before {
+      background: #fef2f2;
+      color: #991b1b;
+      border-bottom: 1px solid #fecaca;
+    }
+
+    .comparison-header.after {
+      background: #f0fdf4;
+      color: #166534;
+      border-bottom: 1px solid #bbf7d0;
+    }
+
+    .comparison-content {
+      padding: 1.25rem;
+    }
+
+    .comparison-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comparison-content li {
+      padding: 0.5rem 0;
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .comparison-content li::before {
+      content: '→';
+      color: var(--text-muted);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+    }
+
+    .timeline-time {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: white;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-white);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* Image placeholder */
+    .visual-placeholder {
+      background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .visual-placeholder .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .visual-placeholder p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* Anatomy Diagram */
+    .anatomy-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-width: 500px;
+      margin: 2rem auto;
+    }
+
+    .anatomy-layer {
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .anatomy-layer .label {
+      font-weight: 600;
+    }
+
+    .anatomy-layer .desc {
+      font-size: 0.8125rem;
+      opacity: 0.8;
+    }
+
+    .anatomy-layer.nav { background: #dbeafe; color: #1e40af; }
+    .anatomy-layer.hero { background: #fef3c7; color: #92400e; }
+    .anatomy-layer.services { background: #d1fae5; color: #065f46; }
+    .anatomy-layer.process { background: #ede9fe; color: #5b21b6; }
+    .anatomy-layer.cta { background: #fce7f3; color: #9d174d; }
+    .anatomy-layer.footer { background: #f3f4f6; color: #374151; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header {
+        padding: 3rem 1.5rem;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .flow-row {
+        flex-direction: column;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>How We Built the <span>ProcessPRO</span> Website</h1>
+    <p>A complete visual guide for beginners — no coding experience required. Learn where the pieces came from and how they fit together.</p>
+    <div class="badge-row">
+      <span class="badge">📚 Beginner Friendly</span>
+      <span class="badge">🎨 Visual Learning</span>
+      <span class="badge">⏱️ ~15 min read</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#glossary">Key Terms</a></li>
+      <li><a href="#sources">Component Sources</a></li>
+      <li><a href="#anatomy">Website Anatomy</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#process">Build Process</a></li>
+      <li><a href="#deploy">Deployment</a></li>
+      <li><a href="#next">Next Steps</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Section 1: Overview -->
+    <section id="overview">
+      <div class="section-number">1</div>
+      <h2>What Did We Build?</h2>
+      <p class="section-intro">We created a professional website for ProcessPRO, an AI and automation agency. The website has animated backgrounds, interactive effects, and a modern dark design.</p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">The Big Picture: From Idea to Live Website</div>
+        <div class="flow-diagram">
+          <div class="flow-row">
+            <div class="flow-box idea">
+              💡<br><strong>Your Idea</strong><br>
+              <small>"I need an AI agency website"</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box source">
+              📦<br><strong>Find Components</strong><br>
+              <small>21st.dev library</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box build">
+              🔨<br><strong>Combine & Customize</strong><br>
+              <small>Claude AI builds it</small>
+            </div>
+          </div>
+          <div class="flow-arrow down">→</div>
+          <div class="flow-row">
+            <div class="flow-box result">
+              ✨<br><strong>Complete Website</strong><br>
+              <small>HTML + CSS + JavaScript</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box deploy">
+              🚀<br><strong>Go Live</strong><br>
+              <small>Vercel hosting</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">💡</div>
+        <div class="callout-content">
+          <h5>Key Insight</h5>
+          <p>Modern websites are built by combining pre-made "components" (building blocks) rather than writing everything from scratch. Think of it like building with LEGO — you pick the pieces you want and connect them together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Glossary -->
+    <section id="glossary">
+      <div class="section-number">2</div>
+      <h2>Key Terms Explained</h2>
+      <p class="section-intro">Before we dive in, let's make sure you understand the words we'll be using. Don't worry — these are simpler than they sound!</p>
+
+      <div class="glossary-grid">
+        <div class="glossary-item">
+          <div class="glossary-term">🧱 Component</div>
+          <p class="glossary-def">A reusable piece of a website, like a button, navigation bar, or animated background. Components are the "building blocks" of modern web design.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">📄 HTML</div>
+          <p class="glossary-def">The language that defines what's ON a webpage — the text, images, buttons, and structure. Think of it as the "skeleton" of a website.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">🎨 CSS</div>
+          <p class="glossary-def">The language that defines what a webpage LOOKS LIKE — colors, fonts, spacing, and layout. Think of it as the "skin and clothing" of a website.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">⚡ JavaScript</div>
+          <p class="glossary-def">The language that makes websites INTERACTIVE — animations, button clicks, moving particles. Think of it as the "brain and muscles" of a website.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">📚 21st.dev</div>
+          <p class="glossary-def">A library website where developers share beautiful, ready-to-use components. It's like a furniture catalog for websites — you browse, pick what you like, and use it in your project.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">🤖 Claude AI</div>
+          <p class="glossary-def">An AI assistant (that's me!) that can write code, combine components, and build complete websites based on your description.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">▲ Vercel</div>
+          <p class="glossary-def">A platform that "hosts" websites — meaning it stores your website files on powerful computers that make them accessible to anyone on the internet, 24/7.</p>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">🔗 GitHub</div>
+          <p class="glossary-def">A website where developers store and share code. Think of it as Google Drive, but specifically designed for code files.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Component Sources -->
+    <section id="sources">
+      <div class="section-number">3</div>
+      <h2>Where the Components Came From</h2>
+      <p class="section-intro">We didn't build everything from scratch. We used beautiful pre-made components from 21st.dev — a library of React components created by talented designers.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">📦</div>
+          <div>
+            <h4>What is 21st.dev?</h4>
+          </div>
+        </div>
+        <p>21st.dev is an open-source component library. Developers upload beautiful, animated UI components that anyone can use for free. It's like a recipe book for web design — each "recipe" (component) comes with the exact code you need.</p>
+        
+        <div class="comparison-container" style="margin-top: 1.5rem;">
+          <div class="comparison-box">
+            <div class="comparison-header before">❌ Building from scratch</div>
+            <div class="comparison-content">
+              <ul>
+                <li>Takes days or weeks to create animations</li>
+                <li>Need deep knowledge of CSS and JavaScript</li>
+                <li>Risk of bugs and compatibility issues</li>
+                <li>Time spent on solved problems</li>
+              </ul>
+            </div>
+          </div>
+          <div class="comparison-box">
+            <div class="comparison-header after">✅ Using component libraries</div>
+            <div class="comparison-content">
+              <ul>
+                <li>Get professional animations in minutes</li>
+                <li>Code is tested and ready to use</li>
+                <li>Just customize colors and text</li>
+                <li>Focus on making it yours</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>The 5 Components We Used</h3>
+      <p>Here are the exact components from 21st.dev that we combined to create the ProcessPRO website:</p>
+
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="component-preview">
+            <div class="placeholder" style="color: #4ae3e3;">✦ ✦ ✦</div>
+          </div>
+          <div class="component-info">
+            <h4>1. ASMR Static Background</h4>
+            <p>Interactive particle system with magnetic vortex effect that responds to mouse movement.</p>
+            <span class="component-tag">asmr-background.tsx</span>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <div class="component-preview">
+            <div class="placeholder" style="color: #8b5cf6; font-size: 1.5rem; font-family: monospace;">V!3W W0RK</div>
+          </div>
+          <div class="component-info">
+            <h4>2. Text Scramble</h4>
+            <p>Text that scrambles through random characters on hover, then reveals the real text.</p>
+            <span class="component-tag">text-scramble.tsx</span>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <div class="component-preview">
+            <div class="placeholder" style="font-size: 2rem;">Let's work<br><span style="opacity: 0.5;">together</span></div>
+          </div>
+          <div class="component-info">
+            <h4>3. Let's Work Section</h4>
+            <p>Elegant call-to-action with hover animations and booking button transition.</p>
+            <span class="component-tag">lets-work-section.tsx</span>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <div class="component-preview">
+            <svg width="200" height="80" viewBox="0 0 200 80" style="opacity: 0.8;">
+              <path d="M0 40 Q50 20 100 40 T200 40" stroke="#FFB7C5" stroke-width="2" fill="none"/>
+              <path d="M0 50 Q50 30 100 50 T200 50" stroke="#4FABFF" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="component-info">
+            <h4>4. Google Gemini Effect</h4>
+            <p>Scroll-animated SVG paths that draw themselves as you scroll down the page.</p>
+            <span class="component-tag">google-gemini-effect.tsx</span>
+          </div>
+        </div>
+
+        <div class="component-card">
+          <div class="component-preview">
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; padding: 20px;">
+              <div style="width: 6px; height: 6px; background: #4ae3e3; border-radius: 2px;"></div>
+              <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+              <div style="width: 6px; height: 6px; background: #4ae3e3; border-radius: 2px;"></div>
+              <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+              <div style="width: 6px; height: 6px; background: #4ae3e3; border-radius: 2px;"></div>
+              <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+              <div style="width: 6px; height: 6px; background: #4ae3e3; border-radius: 2px;"></div>
+            </div>
+          </div>
+          <div class="component-info">
+            <h4>5. Dot Loader</h4>
+            <p>Animated 7×7 grid of dots that light up in patterns, creating a "processing" effect.</p>
+            <span class="component-tag">dot-loader.tsx</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">🔗</div>
+        <div class="callout-content">
+          <h5>How to Find Components on 21st.dev</h5>
+          <p>Visit <strong>21st.dev</strong>, browse the gallery, and click on any component to see its code. You can copy the code and give it to Claude to integrate into your project!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Website Anatomy -->
+    <section id="anatomy">
+      <div class="section-number">4</div>
+      <h2>Website Anatomy</h2>
+      <p class="section-intro">Let's look at the structure of the ProcessPRO website. Every professional website has distinct "sections" that serve different purposes.</p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Website Section Breakdown</div>
+        <div class="anatomy-diagram">
+          <div class="anatomy-layer nav">
+            <span class="label">🔝 Navigation Bar</span>
+            <span class="desc">Logo + menu links + CTA button</span>
+          </div>
+          <div class="anatomy-layer hero">
+            <span class="label">🌟 Hero Section</span>
+            <span class="desc">Big headline + tagline + main buttons</span>
+          </div>
+          <div class="anatomy-layer services">
+            <span class="label">📋 Services Grid</span>
+            <span class="desc">6 cards explaining what you offer</span>
+          </div>
+          <div class="anatomy-layer process">
+            <span class="label">📊 Process Steps</span>
+            <span class="desc">How you work (timeline/steps)</span>
+          </div>
+          <div class="anatomy-layer cta">
+            <span class="label">📞 Call-to-Action</span>
+            <span class="desc">"Let's work together" section</span>
+          </div>
+          <div class="anatomy-layer footer">
+            <span class="label">📄 Footer</span>
+            <span class="desc">Links + copyright + contact</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Visual Map: What Each Section Contains</h3>
+
+      <div class="card">
+        <h4>🔝 Navigation Bar (Always Visible)</h4>
+        <p>The navigation stays at the top even when you scroll. It contains:</p>
+        <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li><strong>Logo</strong> — Triple chevron icon + "ProcessPRO" text</li>
+          <li><strong>Menu Links</strong> — Services, Process, About, Contact</li>
+          <li><strong>CTA Button</strong> — "Book a Call" button</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>🌟 Hero Section (First Impression)</h4>
+        <p>The first thing visitors see. Takes up the full screen and includes:</p>
+        <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li><strong>Availability Badge</strong> — Green dot + "Available for Projects"</li>
+          <li><strong>Main Headline</strong> — "Automate Everything. Scale Infinitely."</li>
+          <li><strong>Subtitle</strong> — One sentence explaining what you do</li>
+          <li><strong>Two Buttons</strong> — "Start Your Project" + "See Our Work"</li>
+          <li><strong>Particle Background</strong> — Interactive floating particles</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>📋 Services Section (What You Offer)</h4>
+        <p>Six cards arranged in a grid, each explaining one service:</p>
+        <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li>AI Workflow Automation</li>
+          <li>Custom Integrations</li>
+          <li>Intelligent Chatbots</li>
+          <li>Document Processing</li>
+          <li>Predictive Analytics</li>
+          <li>Process Optimization</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Section 5: How Components Connect -->
+    <section id="components">
+      <div class="section-number">5</div>
+      <h2>How the Components Connect</h2>
+      <p class="section-intro">Each component from 21st.dev was adapted and placed into a specific section of the website. Here's the mapping:</p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Component → Website Section Mapping</div>
+        <div class="flow-diagram">
+          <div class="flow-row" style="flex-wrap: wrap; gap: 0.75rem;">
+            <div class="flow-box source" style="min-width: 200px;">
+              <strong>ASMR Background</strong><br>
+              <small>Particle system</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box result" style="min-width: 200px;">
+              <strong>Entire Website</strong><br>
+              <small>Background layer (z-index: 0)</small>
+            </div>
+          </div>
+          <div class="flow-row" style="flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+            <div class="flow-box source" style="min-width: 200px;">
+              <strong>Text Scramble</strong><br>
+              <small>Hover animation</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box result" style="min-width: 200px;">
+              <strong>CTA Section</strong><br>
+              <small>The word "intelligent"</small>
+            </div>
+          </div>
+          <div class="flow-row" style="flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+            <div class="flow-box source" style="min-width: 200px;">
+              <strong>Let's Work Section</strong><br>
+              <small>Hover + click animations</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box result" style="min-width: 200px;">
+              <strong>CTA Section</strong><br>
+              <small>Title + button styling</small>
+            </div>
+          </div>
+          <div class="flow-row" style="flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+            <div class="flow-box source" style="min-width: 200px;">
+              <strong>Dot Loader</strong><br>
+              <small>Animated grid</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box result" style="min-width: 200px;">
+              <strong>CTA Section</strong><br>
+              <small>Above "Let's build"</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Code Transformation Example</h3>
+      <p>Here's how the original component code was adapted. The colors were changed from the original to match ProcessPRO's brand:</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dot red"></div>
+          <div class="code-dot yellow"></div>
+          <div class="code-dot green"></div>
+          <span class="code-filename">Color customization</span>
+        </div>
+        <div class="code-content">
+          <code>
+<span class="comment">/* BEFORE (Original from 21st.dev) */</span>
+<span class="keyword">const</span> isGlass = Math.random() > <span class="value">0.7</span>;
+this.color = isGlass ? <span class="string">'240, 245, 255'</span> : <span class="string">'80, 80, 85'</span>;
+
+<span class="comment">/* AFTER (Customized for ProcessPRO) */</span>
+<span class="keyword">const</span> isGlass = Math.random() > <span class="value">0.7</span>;
+this.color = isGlass ? <span class="string">'74, 227, 227'</span> : <span class="string">'139, 92, 246'</span>;
+<span class="comment">// Cyan (#4ae3e3)        // Purple (#8b5cf6)</span>
+          </code>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">🎨</div>
+        <div class="callout-content">
+          <h5>The ProcessPRO Color Palette</h5>
+          <p><strong>Background:</strong> #0a0a0c (near black) • <strong>Cyan:</strong> #4ae3e3 • <strong>Purple:</strong> #8b5cf6 • <strong>Text:</strong> white with varying opacity</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Build Process -->
+    <section id="process">
+      <div class="section-number">6</div>
+      <h2>The Build Process (Step by Step)</h2>
+      <p class="section-intro">Here's exactly how the website was created, from your initial request to the final product.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 1</div>
+          <div class="timeline-content">
+            <h4>📝 You Provided the Brief</h4>
+            <p>"Build an AI and automation website... ProcessPRO... blend the best of all components... clean and simple."</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 2</div>
+          <div class="timeline-content">
+            <h4>📦 I Analyzed the Component Files</h4>
+            <p>Read through the 5 component files you attached, understanding what each one does and what code it contains.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 3</div>
+          <div class="timeline-content">
+            <h4>🖼️ I Studied Your Brand Image</h4>
+            <p>Looked at the ProcessPRO logo image to understand the brand aesthetic — dark background, neural network visual, cyan + purple colors.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 4</div>
+          <div class="timeline-content">
+            <h4>📐 I Planned the Structure</h4>
+            <p>Decided on 6 sections: Navigation, Hero, Services, Process, CTA, Footer. Mapped which components go where.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 5</div>
+          <div class="timeline-content">
+            <h4>✍️ I Wrote the Code</h4>
+            <p>Created one HTML file containing all the HTML structure, CSS styling, and JavaScript interactivity. Combined all 5 components into a unified design.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 6</div>
+          <div class="timeline-content">
+            <h4>🎨 I Customized for ProcessPRO</h4>
+            <p>Changed colors to match your brand, wrote custom copy for services, added your logo design, ensured everything feels cohesive.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">Step 7</div>
+          <div class="timeline-content">
+            <h4>📤 I Delivered the File</h4>
+            <p>Saved the complete website as a single HTML file (processpro.html) that you can open in any browser or deploy to Vercel.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>The File Structure</h3>
+      <p>For this simple website, everything lives in ONE file. Larger projects would split this into multiple files:</p>
+
+      <div class="diagram-container">
+        <div class="diagram-title">File Structure (Single-File Version)</div>
+        <div class="tree-diagram">
+          <div class="tree-root">📁 processpro/</div>
+          <div class="tree-branch">
+            <div class="tree-item">
+              <span class="tree-label file-html"><span class="icon">📄</span> index.html</span>
+              <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8125rem;">← Everything is here!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diagram-container">
+        <div class="diagram-title">What's Inside index.html</div>
+        <div class="tree-diagram">
+          <div class="tree-root">📄 index.html</div>
+          <div class="tree-branch">
+            <div class="tree-item">
+              <span class="tree-label" style="background: #fef3c7; border-color: #fcd34d;"><span class="icon">📝</span> &lt;head&gt; section</span>
+              <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8125rem;">Page title, fonts, meta tags</span>
+            </div>
+            <div class="tree-item">
+              <span class="tree-label file-css"><span class="icon">🎨</span> &lt;style&gt; block</span>
+              <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8125rem;">All CSS styles (~500 lines)</span>
+            </div>
+            <div class="tree-item">
+              <span class="tree-label file-html"><span class="icon">🏗️</span> &lt;body&gt; content</span>
+              <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8125rem;">All visible elements</span>
+            </div>
+            <div class="tree-item">
+              <span class="tree-label file-js"><span class="icon">⚡</span> &lt;script&gt; block</span>
+              <span style="margin-left: 1rem; color: var(--text-muted); font-size: 0.8125rem;">Particle animation + interactions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Deployment -->
+    <section id="deploy">
+      <div class="section-number">7</div>
+      <h2>Making It Live (Deployment)</h2>
+      <p class="section-intro">Your website file needs to be "hosted" on a server so anyone can visit it. Vercel makes this incredibly easy — even for non-developers.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon cyan">▲</div>
+          <div>
+            <h4>What is Vercel?</h4>
+          </div>
+        </div>
+        <p>Vercel is a cloud platform that hosts websites. When you upload your files to Vercel, it stores them on powerful computers around the world. When someone types your website address, Vercel serves your files to their browser instantly.</p>
+      </div>
+
+      <h3>Deployment Options</h3>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-number-circle"></div>
+          <div class="step-content">
+            <h4>Option A: Drag & Drop (Easiest)</h4>
+            <p>Go to vercel.com/new, drag your project folder onto the page, and click Deploy. Done! You'll get a URL like <code class="mono" style="background: var(--bg); padding: 0.125rem 0.375rem; border-radius: 4px; font-size: 0.875rem;">processpro.vercel.app</code></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number-circle"></div>
+          <div class="step-content">
+            <h4>Option B: Connect to GitHub (Professional)</h4>
+            <p>Push your code to GitHub, then connect your GitHub repo to Vercel. Every time you update your code, Vercel automatically updates your live website.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number-circle"></div>
+          <div class="step-content">
+            <h4>Option C: Command Line (Advanced)</h4>
+            <p>Install the Vercel CLI tool, run <code class="mono" style="background: var(--bg); padding: 0.125rem 0.375rem; border-radius: 4px; font-size: 0.875rem;">vercel</code> in your project folder. The terminal walks you through the rest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diagram-container">
+        <div class="diagram-title">Deployment Flow</div>
+        <div class="flow-diagram">
+          <div class="flow-row">
+            <div class="flow-box idea">
+              💻<br><strong>Your Computer</strong><br>
+              <small>index.html file</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box source">
+              📤<br><strong>Upload</strong><br>
+              <small>Drag & drop or CLI</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box build">
+              ▲<br><strong>Vercel</strong><br>
+              <small>Hosts your files</small>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box deploy">
+              🌐<br><strong>Live Website</strong><br>
+              <small>yoursite.vercel.app</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-content">
+          <h5>Custom Domain</h5>
+          <p>To use a custom domain like processpro.ai, you'll need to purchase the domain and configure DNS settings. Vercel provides step-by-step instructions once you're in the dashboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Next Steps -->
+    <section id="next">
+      <div class="section-number">8</div>
+      <h2>What You Can Do Next</h2>
+      <p class="section-intro">Now that you understand how the website was built, here are ways to expand your skills and customize further.</p>
+
+      <div class="card">
+        <h4>🎨 Customize Your Website</h4>
+        <p>You can ask Claude to modify:</p>
+        <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li>Change the color scheme (different accent colors)</li>
+          <li>Update the services and descriptions</li>
+          <li>Add new sections (testimonials, case studies, team)</li>
+          <li>Change fonts and typography</li>
+          <li>Add your real email and booking link</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>📚 Learn More About Components</h4>
+        <p>Browse these resources to find more building blocks:</p>
+        <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li><strong>21st.dev</strong> — Where our components came from</li>
+          <li><strong>ui.shadcn.com</strong> — Clean, accessible components</li>
+          <li><strong>ui.aceternity.com</strong> — Animated components</li>
+          <li><strong>magicui.design</strong> — Magical UI effects</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>🚀 Scale to a Full Application</h4>
+        <p>When you're ready for more pages and features, you can convert this to:</p>
+        <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li><strong>Next.js</strong> — React framework for multi-page sites</li>
+          <li><strong>Astro</strong> — Fast static site generator</li>
+          <li><strong>WordPress</strong> — If you want a CMS for easy editing</li>
+        </ul>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">💡</div>
+        <div class="callout-content">
+          <h5>Pro Tip: Save Your Prompts</h5>
+          <p>Keep a document of what you asked Claude to build. This becomes your "recipe" that you can refine and reuse for future projects!</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <p style="margin-bottom: 1rem; color: var(--text-secondary);">Ready to build something amazing?</p>
+        <a href="#" class="btn">
+          Start a New Project with Claude
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Created with ❤️ by Claude AI • A teaching resource for ProcessPRO</p>
+  </footer>
+
+</body>
+</html>
