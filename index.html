@@ -516,6 +516,76 @@
       font-family: 'Space Mono', monospace;
     }
 
+    /* About Section */
+    .about-grid {
+      display: flex;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      align-items: flex-start;
+    }
+
+    .about-bio {
+      flex: 1.4;
+    }
+
+    .about-bio p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-lead {
+      color: var(--text-primary) !important;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .about-stats {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.02);
+    }
+
     /* Process Section */
     .process-section {
       background: var(--bg-secondary);
@@ -817,6 +887,14 @@
       .services-grid {
         grid-template-columns: 1fr;
       }
+
+      .about-grid {
+        flex-direction: column;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -1013,6 +1091,53 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <span class="section-label mono">Who's Behind This</span>
+      <h2 class="section-title">Built on Real-World Experience</h2>
+      <p class="section-subtitle">Enterprise scale. Startup speed. No jargon.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-bio">
+        <p class="about-lead">I'm Vaishali — AI Process Automation Engineer, AI Coach, and the person who upgraded legacy codebases protecting around £800Bn AUM.</p>
+        <p>I've worked across Fortune 500 asset managers and growing businesses to modernise mission-critical systems, automate workflows, and deliver real business impact — not just technical deliverables.</p>
+        <p>Before tech, I spent 21 years at Homerton NHS Foundation Trust in clinical and operations leadership. We scaled patient screenings from 10 to 20,000 per week. That's where I learned how to navigate complex organisations, manage regulatory pressure, and ship things that actually hold up.</p>
+        <p>I'm comfortable in code and low-code. I work across healthcare, fintech, and enterprise — industries where getting it wrong is expensive.</p>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-number mono">~£800Bn</span>
+          <span class="stat-label">AUM protected via codebase modernisation</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number mono">21 yrs</span>
+          <span class="stat-label">Clinical &amp; operations leadership, NHS</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number mono">SMB → F500</span>
+          <span class="stat-label">Delivered across every stage of growth</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number mono">Imperial</span>
+          <span class="stat-label">Software Engineering + Design background</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-tags">
+      <span class="tag mono">Enterprise Codebase Modernisation</span>
+      <span class="tag mono">AI Workflow Automation</span>
+      <span class="tag mono">Process Optimisation</span>
+      <span class="tag mono">Healthcare</span>
+      <span class="tag mono">Fintech</span>
+      <span class="tag mono">Governance &amp; Security</span>
+      <span class="tag mono">Fixed-Price. Clear Scope.</span>
     </div>
   </section>
 
