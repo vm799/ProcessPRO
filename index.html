@@ -516,6 +516,88 @@
       font-family: 'Space Mono', monospace;
     }
 
+    /* Work Section */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .work-card {
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+    }
+
+    .work-card:hover {
+      border-color: rgba(74,227,227,0.3);
+      transform: translateY(-3px);
+    }
+
+    .work-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .work-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .work-status {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .status-live {
+      color: #4ae38f;
+      border: 1px solid rgba(74,227,143,0.3);
+      background: rgba(74,227,143,0.05);
+    }
+
+    .status-build {
+      color: var(--accent-cyan);
+      border: 1px solid rgba(74,227,227,0.3);
+      background: rgba(74,227,227,0.05);
+    }
+
+    .work-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .work-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .work-stack {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .work-stack li {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      color: var(--text-muted);
+    }
+
     /* About Section */
     .about-grid {
       display: flex;
@@ -917,6 +999,7 @@
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1141,6 +1224,108 @@
     </div>
   </section>
 
+  <!-- Work Section -->
+  <section class="section" id="work">
+    <div class="section-header">
+      <span class="section-label mono">What We've Built</span>
+      <h2 class="section-title">Real Projects. Real Systems.</h2>
+      <p class="section-subtitle">Production AI pipelines built and deployed — not demos</p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-meta">
+          <span class="work-tag mono">Video Automation</span>
+          <span class="work-status mono status-live">Live</span>
+        </div>
+        <h3>YouTube Content Factory</h3>
+        <p>End-to-end automated video production pipeline. Script generation → ElevenLabs voice synthesis → Kling AI video clips → subtitle rendering → YouTube upload. 9-stage orchestration, runs unattended.</p>
+        <ul class="work-stack">
+          <li class="mono">Claude API</li>
+          <li class="mono">ElevenLabs</li>
+          <li class="mono">Kling AI</li>
+          <li class="mono">Playwright</li>
+          <li class="mono">YouTube API</li>
+        </ul>
+      </div>
+
+      <div class="work-card">
+        <div class="work-meta">
+          <span class="work-tag mono">Agent Pipeline</span>
+          <span class="work-status mono status-live">Live</span>
+        </div>
+        <h3>Digital Product Factory</h3>
+        <p>5-agent pipeline that takes a Google Sheet row and produces a finished digital product: market research, spreadsheet build, Etsy &amp; Gumroad listings, PDF delivery, lifestyle mockup images. Zero manual steps.</p>
+        <ul class="work-stack">
+          <li class="mono">Claude API</li>
+          <li class="mono">Google Sheets</li>
+          <li class="mono">Gumroad API</li>
+          <li class="mono">Python</li>
+        </ul>
+      </div>
+
+      <div class="work-card">
+        <div class="work-meta">
+          <span class="work-tag mono">Enterprise AI</span>
+          <span class="work-status mono status-live">Live</span>
+        </div>
+        <h3>Enterprise AI Chief of Staff</h3>
+        <p>Multi-agent operating system for asset management operations. 9 specialist agents: Data Engineer, Compliance Officer, Intelligence Analyst, Quality Engineer, Delivery Coordinator. Built for regulated environments with full audit trails.</p>
+        <ul class="work-stack">
+          <li class="mono">Claude API</li>
+          <li class="mono">Multi-Agent</li>
+          <li class="mono">Python</li>
+          <li class="mono">FS Compliance</li>
+        </ul>
+      </div>
+
+      <div class="work-card">
+        <div class="work-meta">
+          <span class="work-tag mono">Tooling</span>
+          <span class="work-status mono status-live">Live</span>
+        </div>
+        <h3>Website Builder Agent</h3>
+        <p>PRD-first website builder. 5-step planning sequence front-loads all thinking before a line of code is written. Reduces token cost 60–80% vs open-ended building. Produces clean, handover-ready output every time.</p>
+        <ul class="work-stack">
+          <li class="mono">Claude API</li>
+          <li class="mono">Next.js</li>
+          <li class="mono">HTML/CSS</li>
+          <li class="mono">Agent Design</li>
+        </ul>
+      </div>
+
+      <div class="work-card">
+        <div class="work-meta">
+          <span class="work-tag mono">App Factory</span>
+          <span class="work-status mono status-build">In Build</span>
+        </div>
+        <h3>AI App Store Factory</h3>
+        <p>Universal pipeline for shipping AI-powered products: Web SaaS, Chrome Extensions, and Mobile apps. Registry-based lazy loading per app. Deploys to AppSumo, Chrome Web Store, and App Store from a single factory.</p>
+        <ul class="work-stack">
+          <li class="mono">Python</li>
+          <li class="mono">Next.js</li>
+          <li class="mono">AppSumo</li>
+          <li class="mono">Multi-platform</li>
+        </ul>
+      </div>
+
+      <div class="work-card">
+        <div class="work-meta">
+          <span class="work-tag mono">Infrastructure</span>
+          <span class="work-status mono status-live">Live</span>
+        </div>
+        <h3>MCP Enterprise Server</h3>
+        <p>Custom Model Context Protocol server for enterprise AI deployments. Connects Claude to internal systems, enforces data governance boundaries, and enables multi-model orchestration within regulated environments.</p>
+        <ul class="work-stack">
+          <li class="mono">TypeScript</li>
+          <li class="mono">MCP Protocol</li>
+          <li class="mono">Node.js</li>
+          <li class="mono">Enterprise</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="cta-section" id="contact">
     <div class="cta-content">
@@ -1177,7 +1362,7 @@ Cal("init", "15min", {origin:"https://app.cal.com"});
 
 
       
-      <p class="cta-email mono">vaishaligor25@gmail.com</p>
+      <p class="cta-email mono"><a href="mailto:vaishaligor25@gmail.com" style="color:inherit;text-decoration:none;">vaishaligor25@gmail.com</a></p>
     </div>
   </section>
 
@@ -1197,12 +1382,13 @@ Cal("init", "15min", {origin:"https://app.cal.com"});
       <ul class="footer-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#process">Process</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#">Privacy</a></li>
       </ul>
     </div>
     <div class="footer-right mono">
-      © 2025 ProcessPRO. All rights reserved.
+      © 2026 ProcessPRO. All rights reserved.
     </div>
   </footer>
 
